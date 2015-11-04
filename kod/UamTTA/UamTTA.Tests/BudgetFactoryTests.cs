@@ -61,5 +61,22 @@ namespace UamTTA.Tests
             Assert.That(budget.ValidFrom, Is.EqualTo(expectedStartDate));
             Assert.That(budget.ValidTo, Is.EqualTo(expectedEndDate));
         }
+
+        [Test]
+        public void Can_Create_Quarterly_From_Template()
+        {
+            var template = new BudgetTemplate(Duration.Quarterly, "Quarterly Budget");
+            var expectedStartDate = new DateTime(2016, 1, 1);
+            var expectedEndDate = new DateTime(2016, 3, 31);
+
+            Budget budget = _budgetFactory.CreateBudget(template, expectedStartDate);
+
+            Assert.That(budget, Is.Not.Null);
+            Assert.That(budget.ValidFrom, Is.EqualTo(expectedStartDate));
+            Assert.That(budget.ValidTo, Is.EqualTo(expectedEndDate));
+
+        }
+
+
     }
 }

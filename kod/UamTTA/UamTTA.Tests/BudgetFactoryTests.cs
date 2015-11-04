@@ -77,6 +77,20 @@ namespace UamTTA.Tests
 
         }
 
+        [Test]
+        public void Can_Create_Year_From_Template()
+        {
+            var template = new BudgetTemplate(Duration.Yearly, "Yearly Budget");
+            var expectedStartDate = new DateTime(2016, 1, 1);
+            var expectedEndDate = new DateTime(2016, 12, 31);
+
+            Budget budget = _budgetFactory.CreateBudget(template, expectedStartDate);
+
+            Assert.That(budget, Is.Not.Null);
+            Assert.That(budget.ValidFrom, Is.EqualTo(expectedStartDate));
+            Assert.That(budget.ValidTo, Is.EqualTo(expectedEndDate));
+
+        }
 
     }
 }

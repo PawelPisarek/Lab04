@@ -22,6 +22,7 @@ namespace UamTTA
                     break;
 
                 case Duration.Yearly:
+                    endDate = addYear(startDate);
                     break;
 
                 default:
@@ -29,6 +30,11 @@ namespace UamTTA
             }
 
             return new Budget(startDate, endDate);
+        }
+
+        private static DateTime addYear(DateTime startDate)
+        {
+            return startDate.AddYears(1).AddDays(-1);
         }
 
         private static DateTime Quarterly(DateTime startDate)
